@@ -3,7 +3,7 @@
   display: flex;
 }
 
-.counter, .todos {
+.counter, .todos, .colorPalettes {
   flex: 1;
   padding: 1rem;
 }
@@ -14,4 +14,14 @@
 
 .todos {
   background: #f8f9fa;
+}
+
+.colorPalettes {
+  background: #f1f3f5;
+}
+
+#feed {
+  margin: 0;
+  text-align: center;
+  direction: ltr;
 }

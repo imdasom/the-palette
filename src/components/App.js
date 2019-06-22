@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import AppTemplate from './AppTemplate';
-import CounterContainer from 'containers/CounterContainer';
-import TodosContainer from 'containers/TodosContainer';
+import Palettes from './palette/Palettes';
 
 class App extends Component {
   render() {
     return (
-      <AppTemplate
-        counter={<CounterContainer />}
-        todos={<TodosContainer />}
+      <AppTemplate  //왜 AppTemplate에 감싸는지?
+        palettes={<Palettes />}
       />
     );
   }
