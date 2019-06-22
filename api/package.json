@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "name": "color-palette-api",
+  "version": "0.1.0",
+  "description": "color palettes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imdasom/color-palette.git"
+  },
+  "author": "imdasom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imdasom/color-palette/issues"
+  },
+  "homepage": "https://github.com/imdasom/color-palette#readme",
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "mocha": "^6.1.4",
+    "should": "^13.2.3"
+  }
+}

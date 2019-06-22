@@ -1,11 +1,13 @@
 import React from 'react';
 import './AppTemplate.css';
+import 'components/palette/Palette.css';
 
-const AppTemplate = ({counter, todos}) => {
+const AppTemplate = ({palettes}) => {
   return (
     <div className="app-template">
-      <div className="counter">{counter}</div>
-      <div className="todos">{todos}</div>
+      <div>
+        <div className="colorPalettes">{palettes}</div>
+      </div>
     </div>
   );
 };
