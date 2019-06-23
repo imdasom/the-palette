@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { Palettes, Create } from 'pages';
 import AppTemplate from './AppTemplate';
-import Palettes from './palette/Palettes';
 
 class App extends Component {
   render() {
     return (
-      <AppTemplate  //왜 AppTemplate에 감싸는지?
-        palettes={<Palettes />}
-      />
+      <div>
+        <Route exact path='/' component={Palettes} />
+        <Route exact path='/create' component={Create} />
+      </div>
     );
   }
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Palette from "./Palette";
+import Palette from "components/palette/Palette";
 
 class Palettes extends Component {
   render() {
     return (
       <div id="feed">
-        <h2>Palettes</h2>
+        <div>
+          <h2 className='inlineBlock'>Palettes</h2>
+          <a data-button="create" className="button floatR" href="/create">Create</a>
+        </div>
         <Palette palette={getPalette()}/>
         <Palette palette={getPalette()}/>
         <Palette palette={getPalette()}/>
