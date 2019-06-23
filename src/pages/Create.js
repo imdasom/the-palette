@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Create.css';
+import { SketchPicker } from 'react-color';
 
 class Create extends Component {
   componentDidMount() {
@@ -16,6 +17,9 @@ class Create extends Component {
               <div className="place c2"></div>
               <div className="place c1"></div>
             </div>
+          </div>
+          <div>
+            <SketchPicker />
           </div>
           <div>
             <a className="button suggest-button">Done</a>
