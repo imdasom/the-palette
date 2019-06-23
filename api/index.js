@@ -1,3 +1,7 @@
+/**
+ * 참고 : https://www.dev2qa.com/node-js-http-server-get-post-example/
+ */
+
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
