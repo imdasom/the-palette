@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CollectionUtils from 'components/CollectionUtils';
 
-class Color extends Component {
+class Item extends Component {
   render() {
     const item = this.props.item;
     const className = item.className;
@@ -11,11 +11,9 @@ class Color extends Component {
     const hex = CollectionUtils.get(item, 'content.hex');
     return (
       <div className={'place '+className} style={{backgroundColor: 'rgb('+randomR+', '+randomG+', '+randomB+')'}}>
-        <a href="/palette/151737"></a>
-        <span onClick="copy(&quot;2b580c&quot;, this)">{hex}</span>
       </div>
     );
   }
 }
 
-export default Color;
+export default Item;

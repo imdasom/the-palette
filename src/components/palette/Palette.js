@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Color from 'components/item/Color';
+import ClickableItem from 'components/item/ClickableItem';
 import CollectionUtils from 'components/CollectionUtils';
 
 const ItemType = {
@@ -18,7 +18,17 @@ class Palette extends Component {
         switch(item.type) {
           case ItemType.COLOR:
             return (
-              <Color className={item.className} item={item}/>
+              <ClickableItem className={item.className} item={item}
+                             childComponent={
+                               () => {
+                                 return (
+                                   <div>
+                                     <a href="/palette/151737"></a><span onClick="copy(&quot;2b580c&quot;, this)">{this.props.content.hex}</span>
+                                   </div>
+                                 );
+                               }
+                             }
+              />
             );
           default:
             throw new Error('unknwon item type : ', item);
