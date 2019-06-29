@@ -9,13 +9,12 @@ function handle(url, method, parameter) {
         ,content: PalettesApi.getPalettes(parameter)
       }
     }
-  } else {
-    return {
-      returnType: 'text/plain'
-      ,statusCode: 200
-      ,content: 'Hello World\n' + JSON.stringify(parameter)
-    };
   }
+  return {
+    returnType: 'text/plain'
+    ,statusCode: 200
+    ,content: 'Hello World\n' + JSON.stringify(parameter)
+  };
 }
 
 module.exports = {

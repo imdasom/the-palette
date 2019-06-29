@@ -9,6 +9,14 @@ const RequestHandler = require('./RequestHandler');
 
 const hostname = '127.0.0.1';
 const port = 3001;
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+  'Access-Control-Max-Age': 2592000, // 30 days,
+  'Access-Control-Allow-Headers': 'Origin,Accept,X-Requested-With,Content-Type' +
+    ',Access-Control-Request-Method,Access-Control-Request-Headers,Authorization'
+  /** add other headers as per requirement */
+};
 
 const server = http.createServer((req, res) => {
   const urlInfo = url.parse(req.url);
@@ -16,10 +24,12 @@ const server = http.createServer((req, res) => {
   const pathname = urlInfo.pathname;
   const queryParameter = querystring.parse(urlInfo.query);
 
+  console.log(`[${method}] ${pathname}`);
+
   const response = RequestHandler.handle(pathname, method, queryParameter);
 
-  res.statusCode = response.statusCode;
-  res.setHeader('Content-Type', response.returnType);
+  headers['Content-Type'] = response.returnType;
+  res.writeHead(response.statusCode, headers);
   res.end(
     getEndByType(response.returnType, response.content)
   );
