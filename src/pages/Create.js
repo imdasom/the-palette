@@ -118,7 +118,7 @@ class Create extends Component {
           </div>
           <div>
             <button
-              type="submit"
+              type="button"
               className="button suggest-button"
               onClick={this.submitPalette}>
               Done

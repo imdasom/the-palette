@@ -23,16 +23,37 @@ const server = http.createServer((req, res) => {
   const method = req.method;
   const pathname = urlInfo.pathname;
   const queryParameter = querystring.parse(urlInfo.query);
+  let requestData = '';
+  const handleRequest = function handleRequest() {
+    console.log(`====================================================`);
+    console.log(`[${method}] ${pathname}`);
+    console.log(`-------------------request--------------------------`);
+    console.log(`querystring\n${JSON.stringify(queryParameter)}`);
+    console.log(`requestData\n${JSON.stringify(requestData)}`);
 
-  console.log(`[${method}] ${pathname}`);
+    const response = RequestHandler.handle(pathname, method, queryParameter);
 
-  const response = RequestHandler.handle(pathname, method, queryParameter);
+    headers['Content-Type'] = response.returnType;
+    res.writeHead(response.statusCode, headers);
+    res.end(
+      getEndByType(response.returnType, response.content)
+    );
+    console.log(`-------------------response-------------------------`);
+    console.log(response.content);
+    console.log(`====================================================`);
+  };
 
-  headers['Content-Type'] = response.returnType;
-  res.writeHead(response.statusCode, headers);
-  res.end(
-    getEndByType(response.returnType, response.content)
-  );
+  if(method === 'POST') {
+    req.on('data', function (data) {
+      requestData += data;
+    });
+    req.on('end', () => {
+      requestData = JSON.parse(requestData);
+      handleRequest();
+    });
+  } else {
+    handleRequest();
+  }
 });
 
 server.listen(port, hostname, () => {
