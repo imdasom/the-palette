@@ -19,6 +19,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "nyc": "^14.1.1",
     "react-router-dom": "^5.0.1"
   }
 }

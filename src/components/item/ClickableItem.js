@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CollectionUtils from 'components/CollectionUtils';
+import { Color } from 'components/item/Color';
 
 class ClickableItem extends Component {
   constructor(props) {
@@ -13,17 +14,8 @@ class ClickableItem extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ ...nextProps });
   }
-  shouldCOmponentUpdate(nextProps, nextState) {
-    if(nextProps.item.content.r !== nextState.item.content.r) {
-      return true;
-    }
-    if(nextProps.item.content.g !== nextState.item.content.g) {
-      return true;
-    }
-    if(nextProps.item.content.b !== nextState.item.content.b) {
-      return true;
-    }
-    return false;
+  shouldComponentUpdate(nextProps, nextState) {
+    return !Color.equal(nextProps.item, this.props.item);
   }
   handleClick = (e) => {
     const { onClick } = this.props;
@@ -34,13 +26,11 @@ class ClickableItem extends Component {
     const { childComponent } = this.props;
     const { active, item } = this.state;
     const className = CollectionUtils.get(item, 'className');
-    const r = CollectionUtils.get(item, 'content.r');
-    const g = CollectionUtils.get(item, 'content.g');
-    const b = CollectionUtils.get(item, 'content.b');
+    const hex = CollectionUtils.get(item, 'content.hex');
     return (
       <div onClick={this.handleClick}
-           className={`place ` + className + ` ${active && 'active'}`}
-           style={{backgroundColor: 'rgb('+r+', '+g+', '+b+')'}}>
+           className={`place paletteItem ` + className + ` ${active && 'active'}`}
+           style={{backgroundColor: '#'+hex}}>
         {childComponent}
       </div>
     );

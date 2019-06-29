@@ -1,11 +1,49 @@
-* { transition: none }
-h1 { margin-top:40px; margin-bottom:40px; }
-.item { width:400px; height:400px; cursor:pointer; margin:0; padding:0; }
+* {
+    transition: none
+}
 
-.c1 { background-color:#ddd }
-.c2 { background-color:#ccc }
-.c3 { background-color:#bbb }
-.c4 { background-color:#aaa }
-.hide { display:none }
-img { width:80px }
-.suggest-button { margin-top:20px; }
+h1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.item {
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.c1 {
+    background-color: #ddd
+}
+
+.c2 {
+    background-color: #ccc
+}
+
+.c3 {
+    background-color: #bbb
+}
+
+.c4 {
+    background-color: #aaa
+}
+
+.hide {
+    display: none
+}
+
+img {
+    width: 80px
+}
+
+.suggest-button {
+    margin-top: 20px;
+}
+
+.sketch-picker {
+    display: inline-block;
+    float: right
+}
