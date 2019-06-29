@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ClickableItem from 'components/item/ClickableItem';
+import ColorItemInput from 'components/color/ColorItemInput';
 import CollectionUtils from 'components/CollectionUtils';
 
 const ItemType = {
@@ -18,7 +18,7 @@ class Palette extends Component {
         switch(item.type) {
           case ItemType.COLOR:
             return (
-              <ClickableItem className={item.className} item={item}
+              <ColorItemInput className={item.className} item={item}
                              childComponent={
                                () => {
                                  return (

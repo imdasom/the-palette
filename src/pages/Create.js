@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import { SketchPicker } from 'react-color'; // https://casesandberg.github.io/react-color/
-import './Create.css';
-import ClickableItem from 'components/item/ClickableItem';
+import ColorItemInput from 'components/color/ColorItemInput';
+import * as paletteApi from 'pages/PalettesApi';
+import 'pages/Palettes.css';
+import 'pages/Create.css';
 
 class Create extends Component {
   state = {
     selected: 'c1'
-    ,colorPicked: {hex: 'FFFFFF', r: 0, g: 0, b: 0}
+    ,colorPicked: {hex: 'FFFFFF'}
     ,items: [
       {
         id: 'c4'
         ,className: 'c4'
-        ,content: {hex: 'AAAAAA', r: 170, g: 170, b: 170}
+        ,content: {hex: 'AAAAAA'}
       }
       ,{
         id: 'c3'
         ,className: 'c3'
-        ,content: {hex: 'BBBBBB', r: 187, g: 187, b: 187}
+        ,content: {hex: 'BBBBBB'}
       }
       ,{
         id: 'c2'
         ,className: 'c2'
-        ,content: {hex: 'CCCCCC', r: 204,g: 204,b: 204}
+        ,content: {hex: 'CCCCCC'}
       }
       ,{
         id: 'c1'
         ,className: 'c1'
-        ,content: {hex: 'DDDDDD', r: 221, g: 221, b: 221}
+        ,content: {hex: 'DDDDDD'}
       }
     ]
   };
@@ -35,7 +37,6 @@ class Create extends Component {
     const colorHex = color.hex.replace('#', '');
     const content = {
       hex: colorHex
-      ,rgb: color.rgb
     };
     this.setState({
       colorPicked: colorHex
@@ -47,24 +48,56 @@ class Create extends Component {
     });
   };
   submitPalette = (e) => {
+    const palette = {
+      author: 'daim'
+      ,name: 'spring color'
+      ,items: [
+        {
+          type: 'COLOR'
+          ,content: {
+            hex: 'FEC1CA'
+          }
+        }
+        ,{
+          type: 'COLOR'
+          ,content: {
+            hex: 'F9CD9C'
+          }
+        }
+        ,{
+          type: 'COLOR'
+          ,content: {
+            hex: 'CCF79B'
+          }
+        }
+        ,{
+          type: 'COLOR'
+          ,content: {
+            hex: '82B6EE'
+          }
+        }
+      ]
+    };
+    debugger;
+    paletteApi.create(palette);
   };
   handleClick = (e, itemId) => {
     // 여기서 this는 누구?
     const { items } = this.state;
     let colorPicked = items.filter(item => itemId === item.id);
-        colorPicked = colorPicked.length === 1 ? colorPicked[0].content : {hex:'000000', r:0,g:0,b:0};
+        colorPicked = colorPicked.length === 1 ? colorPicked[0].content : {hex:'000000'};
     this.setState({selected: itemId, colorPicked: colorPicked});
   };
   getItemComponentList() {
     const { selected } = this.state;
     return this.state.items.map(
       (item) => (
-        <ClickableItem
+        <ColorItemInput
           active={selected === item.id}
           onClick={this.handleClick}
           item={item}
           key={item.id}>
-        </ClickableItem>
+        </ColorItemInput>
       )
     );
   }
@@ -74,25 +107,29 @@ class Create extends Component {
     return (
       <div id="feed">
         <h2>Create Palette</h2>
-        <form onSubmit={this.submitPalette}>
+        <form>
           <div className="item">
             <div className="canvas">
               {items}
             </div>
           </div>
-          <SketchPicker
-            disableAlpha={true}
-            color={colorPicked}
-            onChange={this.handleChange}
-          />
+          <div className="center">
+            <input type="text" placeholder="name your palette"/>
+          </div>
           <div>
             <button
               type="submit"
-              className="button suggest-button">
+              className="button suggest-button"
+              onClick={this.submitPalette}>
               Done
             </button>
           </div>
         </form>
+        <SketchPicker
+          disableAlpha={true}
+          color={colorPicked}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }

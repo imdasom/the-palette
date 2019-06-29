@@ -1,6 +1,5 @@
 import React from 'react';
 import './AppTemplate.css';
-import 'components/palette/Palette.css';
 
 const AppTemplate = ({palettes}) => {
   return (

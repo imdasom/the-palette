@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Palette from "components/palette/Palette";
+import 'pages/Palettes.css';
 
 class Palettes extends Component {
   render() {
