@@ -1,64 +1,32 @@
 const CollectionUtils = require('./CollectionUtils');
+
+let sequence = 1;
+let palettes = [];
+
+function create(parameter) {
+  const id = sequence++;
+  parameter.id = id;
+  palettes.push(parameter);
+  return id;
+}
 function getPalettes(parameter) {
-  const page = CollectionUtils.get(parameter, 'page');
-  const pageSize = CollectionUtils.get(parameter, 'pageSize');
+  let page = CollectionUtils.get(parameter, 'page');
+  let pageSize = CollectionUtils.get(parameter, 'pageSize');
   if(page == null) {
     page = 1;
   }
   if(pageSize == null) {
     pageSize = 16;
   }
-  return [...Array(Number(pageSize))].map(item => getPalette());
+  return getPaginatedPalettes(page, pageSize);
 }
-const getPalette = function() {
-  return {
-    id: new Date().getTime()
-    , like: 23
-    , author: 'daim'
-    , name: 'name' + (Math.floor(Math.random() * (+9999 - +0)) + +0)
-    , items: getItems()
-  };
-}
-function getItems() {
-  return [
-    {
-      type: 'COLOR'
-      , content: {
-        r: Math.floor(Math.random() * (+255 - +0)) + +0
-        , g: Math.floor(Math.random() * (+255 - +0)) + +0
-        , b: Math.floor(Math.random() * (+255 - +0)) + +0
-        , hex: '#' + (Math.floor(Math.random() * (+999999 - +111111)) + +111111)
-      }
-    }
-    ,{
-      type: 'COLOR'
-      , content: {
-        r: Math.floor(Math.random() * (+255 - +0)) + +0
-        , g: Math.floor(Math.random() * (+255 - +0)) + +0
-        , b: Math.floor(Math.random() * (+255 - +0)) + +0
-        , hex: '#' + (Math.floor(Math.random() * (+999999 - +111111)) + +111111)
-      }
-    }
-    ,{
-      type: 'COLOR'
-      , content: {
-        r: Math.floor(Math.random() * (+255 - +0)) + +0
-        , g: Math.floor(Math.random() * (+255 - +0)) + +0
-        , b: Math.floor(Math.random() * (+255 - +0)) + +0
-        , hex: '#' + (Math.floor(Math.random() * (+999999 - +111111)) + +111111)
-      }
-    }
-    ,{
-      type: 'COLOR'
-      , content: {
-        r: Math.floor(Math.random() * (+255 - +0)) + +0
-        , g: Math.floor(Math.random() * (+255 - +0)) + +0
-        , b: Math.floor(Math.random() * (+255 - +0)) + +0
-        , hex: '#' + (Math.floor(Math.random() * (+999999 - +111111)) + +111111)
-      }
-    }
-  ];
-}
+const getPaginatedPalettes = function(page, pageSize) {
+  const startIndex = ((page - 1) * pageSize);
+  const startNo = startIndex;
+  const endNo = startIndex + pageSize;
+  return palettes.slice(startNo, endNo);
+};
 module.exports = {
   getPalettes: getPalettes
+  ,create: create
 };

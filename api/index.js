@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
     console.log(`querystring\n${JSON.stringify(queryParameter)}`);
     console.log(`requestData\n${JSON.stringify(requestData)}`);
 
-    const response = RequestHandler.handle(pathname, method, queryParameter);
+    const response = RequestHandler.handle(pathname, method, queryParameter, requestData);
 
     headers['Content-Type'] = response.returnType;
     res.writeHead(response.statusCode, headers);
@@ -64,6 +64,6 @@ function getEndByType(returnType, content) {
   if(returnType === 'json') {
     return JSON.stringify(content);
   } else {
-    return content;
+    return content.toString();
   }
 }

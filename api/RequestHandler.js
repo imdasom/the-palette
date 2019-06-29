@@ -1,12 +1,18 @@
 const PalettesApi = require('./PalettesApi');
 
-function handle(url, method, parameter) {
+function handle(url, method, parameter, requestData) {
   if(url === '/api/palettes') {
     if(method === 'GET') {
       return {
         returnType: 'json'
         ,statusCode: 200
         ,content: PalettesApi.getPalettes(parameter)
+      }
+    } else if(method === 'POST') {
+      return {
+        returnType: 'plain/text'
+        ,statusCode: 200
+        ,content: PalettesApi.create(requestData)
       }
     }
   }
