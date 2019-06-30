@@ -1004,3 +1004,11 @@ a:hover {
         max-height: 228px
     }
 }
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.floatR {
+    float: right;
+}

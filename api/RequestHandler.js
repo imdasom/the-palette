@@ -1,6 +1,6 @@
 const PalettesApi = require('./PalettesApi');
 
-function handle(url, method, parameter) {
+function handle(url, method, parameter, requestData) {
   if(url === '/api/palettes') {
     if(method === 'GET') {
       return {
@@ -8,14 +8,19 @@ function handle(url, method, parameter) {
         ,statusCode: 200
         ,content: PalettesApi.getPalettes(parameter)
       }
+    } else if(method === 'POST') {
+      return {
+        returnType: 'plain/text'
+        ,statusCode: 200
+        ,content: PalettesApi.create(requestData)
+      }
     }
-  } else {
-    return {
-      returnType: 'text/plain'
-      ,statusCode: 200
-      ,content: 'Hello World\n' + JSON.stringify(parameter)
-    };
   }
+  return {
+    returnType: 'text/plain'
+    ,statusCode: 200
+    ,content: 'Hello World\n' + JSON.stringify(parameter)
+  };
 }
 
 module.exports = {
