@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from 'helper/history';
 
 const host = 'localhost';
 const port = '3001';
@@ -15,7 +16,7 @@ export function create(palette) {
   axios.post(url, data, config)
   .then(function (response) {
     console.log(response);
-    alert('success');
+    history.push('/');
   })
   .catch(function (error) {
     console.log(error);

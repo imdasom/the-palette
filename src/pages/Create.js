@@ -78,7 +78,6 @@ class Create extends Component {
         }
       ]
     };
-    debugger;
     paletteApi.create(palette);
   };
   handleClick = (e, itemId) => {

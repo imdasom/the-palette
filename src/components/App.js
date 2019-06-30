@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { Palettes, Create } from 'pages';
-import AppTemplate from './AppTemplate';
+import { history } from 'helper/history';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Route exact path='/' component={Palettes} />
-        <Route exact path='/create' component={Create} />
-      </div>
+      <Router history={history}>
+        <div>
+          <Route exact path='/' component={Palettes} />
+          <Route exact path='/create' component={Create} />
+        </div>
+      </Router>
     );
   }
 }
