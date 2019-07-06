@@ -1,0 +1,3 @@
+module.exports = {
+  INVALID_PARAMETER: 'INVALID_PARAMETER'
+};
