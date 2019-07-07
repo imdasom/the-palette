@@ -8,9 +8,7 @@ describe('Test PaletteApi', function() {
   });
   it('should be called create() function', function () {
     const palette = {
-      author: 'daim'
-      ,name: 'TEST_PALETTE_NAME'
-      ,items: [
+      items: [
         {type: 'COLOR', content: {hex: 'AAAAAA'}}
         ,{type: 'COLOR', content: {hex: 'BBBBBB'}}
         ,{type: 'COLOR', content: {hex: 'CCCCCC'}}
@@ -22,17 +20,13 @@ describe('Test PaletteApi', function() {
   });
   it('should throw error when item length in the palette is 0', function () {
     const palette = {
-      author: 'daim'
-      ,name: 'TEST_PALETTE_NAME'
-      ,items: []
+      items: []
     };
     should(function() { PaletteApi.create(palette); }).throw(new Error(ErrorType.INVALID_PARAMETER));
   });
   it('should throw error when item have unknown type', function () {
     const palette = {
-      author: 'daim'
-      ,name: 'TEST_PALETTE_NAME'
-      ,items: [
+      items: [
         {type: 'UNKNOWN_TYPE',content: {hex: 'AAAAAA'}}
       ]
     };
@@ -40,9 +34,7 @@ describe('Test PaletteApi', function() {
   });
   it('should throw error when COLOR item have not hex content', function () {
     const palette = {
-      author: 'daim'
-      ,name: 'TEST_PALETTE_NAME'
-      ,items: [
+      items: [
         {type: 'COLOR',content: {this_is_not_hex: 'AAAAAA'}}
       ]
     };
@@ -50,9 +42,7 @@ describe('Test PaletteApi', function() {
   });
   it('should have same data when create new palette', function () {
     const newPalette = {
-      author: 'daim'
-      ,name: 'PALETTE_NAME_' + new Date().getTime()
-      ,items: [
+      items: [
         {type: 'COLOR', content: {hex: 'AAAAAA'}}
         ,{type: 'COLOR', content: {hex: 'BBBBBB'}}
         ,{type: 'COLOR', content: {hex: 'CCCCCC'}}
@@ -65,9 +55,7 @@ describe('Test PaletteApi', function() {
   });
   it('should return 3 items when get paginated palette with {pageSize=3, page=1}', function () {
     const palette = {
-      author: 'daim'
-      ,name: 'TEST_PALETTE_NAME'
-      ,items: [
+      items: [
         {type: 'COLOR',content: {hex: 'AAAAAA'}}
       ]
     };

@@ -26,13 +26,6 @@ function getPalette(id) {
   return palettes[0];
 }
 
-function getPalettes(page, pageSize) {
-  const startIndex = ((page - 1) * pageSize);
-  const startNo = startIndex;
-  const endNo = startIndex + pageSize;
-  return PaletteDatabase.slice(startNo, endNo);
-}
-
 function getPalettesWithPagination(parameter) {
   let page = CollectionUtils.get(parameter, 'page');
   let pageSize = CollectionUtils.get(parameter, 'pageSize');
@@ -42,7 +35,10 @@ function getPalettesWithPagination(parameter) {
   if(pageSize == null) {
     pageSize = DEFAULT_PAGE_SIZE;
   }
-  return getPalettes(page, pageSize);
+  const startIndex = ((page - 1) * pageSize);
+  const startNo = startIndex;
+  const endNo = startIndex + pageSize;
+  return PaletteDatabase.slice(startNo, endNo);
 }
 
 function validatePalette(palette) {
