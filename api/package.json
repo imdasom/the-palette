@@ -1,6 +1,6 @@
 {
   "name": "the-palette-api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "the palette api server",
   "main": "index.js",
   "directories": {
