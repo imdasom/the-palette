@@ -55,3 +55,14 @@ img {
         width: 240px;
     }
 }
+
+.sp-container {
+    position: absolute!important;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid #d7e5ed;
+    padding: 0;
+    right: 100px!important;
+    top: 100px!important;
+    left: auto!important;
+}
