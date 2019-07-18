@@ -15,7 +15,7 @@ class ColorItem extends Component {
         className={`place paletteItem `+className}
         style={{backgroundColor: '#'+colorHex}}
         onClick={this.handleClick}>
-        <span onClick={`copy(&quot;`+{colorHex}+`&quot;, this)`}>#{colorHex}</span>
+        <span onClick={`copy(&quot;`+colorHex+`&quot;, this)`}>#{colorHex}</span>
       </div>
     );
   };
