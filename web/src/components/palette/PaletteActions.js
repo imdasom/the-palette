@@ -30,4 +30,16 @@ export default {
       .then(response => { success(response); })
       .catch(error => { fail(error); });
   }
+  ,like(id, success, fail) {
+    const url = 'http://' + apiHost + `/api/palettes/${id}/like`;
+    const config = {
+      headers: {
+        'Return-Type': 'plain/text'
+      }
+    };
+    axios
+      .put(url, null, config)
+      .then(response => { success(response); })
+      .catch(error => { fail(error); })
+  }
 };

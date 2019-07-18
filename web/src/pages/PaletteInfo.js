@@ -13,6 +13,7 @@ class PaletteInfo extends Component {
         ,{ type: 'COLOR', content: {hex: 'CCCCCC'} }
         ,{ type: 'COLOR', content: {hex: 'DDDDDD'} }
       ]
+      ,like: 0
     }
   };
   constructor(props) {
@@ -28,6 +29,12 @@ class PaletteInfo extends Component {
   setPalette = (response) => {
     this.setState({palette: response.data});
   };
+  setPaletteLike = (response) => {
+    const { palette } = this.state;
+    this.setState({
+      palette: { ... palette, like: response.data}
+    });
+  };
   getColorItems = () => {
     const { palette, classNames } = this.state;
     return palette.items.map(
@@ -41,17 +48,31 @@ class PaletteInfo extends Component {
       )}
     );
   };
+  handleLikeClick = () => {
+    const { palette } = this.state;
+    PaletteActions.like(
+      palette.id
+      ,this.setPaletteLike
+      ,function fail(error) {
+        console.log(error);
+        alert(error);
+      }
+    );
+  };
   render() {
     const { palette } = this.state;
-    const like = palette.like;
     const date = new Date(palette.created);
+    const likeButtonProps = {
+      like: palette.like
+      ,handleClick: this.handleLikeClick
+    };
     const items = this.getColorItems();
     return (
       <div id="container" className="wrap">
         <div id="feed">
           <Palette
             items={items}
-            like={like}
+            likeButtonProps={likeButtonProps}
             date={date}
             focused={true}
             itemContainerClassNames={'palette'}
