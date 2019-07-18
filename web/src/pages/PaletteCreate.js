@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SketchPicker } from 'react-color'; // https://casesandberg.github.io/react-color/
-import { ColorItem, ItemContainer } from 'components';
+import { ColorItem, ItemContainer, PaletteActions } from 'components/palette';
 import { history } from 'helper/history';
 import 'pages/Palettes.css';
 import 'pages/PaletteCreate.css';
@@ -54,7 +54,14 @@ class PaletteCreate extends Component {
     });
   }
   submitPalette = () => {
-    history.push('/palette/1');
+    const success = (response) => {
+      console.log(response);
+      history.push(`/palette/${response.data}`);
+    };
+    const fail = (error) => {
+      console.log(error);
+    };
+    PaletteActions.create(this.state.palette, success, fail);
   };
   render () {
     const items = this.getColorItems();

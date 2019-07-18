@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ColorItem, Palette } from 'components';
+import { ColorItem, Palette, PaletteActions } from 'components/palette';
 import './Palettes.css';
 import './PaletteInfo.css';
 
@@ -15,6 +15,19 @@ class PaletteInfo extends Component {
       ]
     }
   };
+  constructor(props) {
+    super(props);
+    PaletteActions.getPalette(
+      props.match.params.id
+      ,this.setPalette
+      ,function fail(error) {
+        alert(error);
+      }
+    );
+  }
+  setPalette = (response) => {
+    this.setState({palette: response.data});
+  };
   getColorItems = () => {
     const { palette, classNames } = this.state;
     return palette.items.map(
@@ -27,11 +40,12 @@ class PaletteInfo extends Component {
         />
       )}
     );
-  }
+  };
   render() {
+    const { palette } = this.state;
+    const like = palette.like;
+    const date = new Date(palette.created);
     const items = this.getColorItems();
-    const like = 20;
-    const date = new Date();
     return (
       <div id="container" className="wrap">
         <div id="feed">
@@ -39,6 +53,7 @@ class PaletteInfo extends Component {
             items={items}
             like={like}
             date={date}
+            focused={true}
             itemContainerClassNames={'palette'}
           />
         </div>
