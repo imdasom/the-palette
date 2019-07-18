@@ -62,4 +62,32 @@ describe('Test PaletteApi', function() {
     [...Array(10)].forEach(() => PaletteApi.create(palette));
     PaletteApi.getPalettesWithPagination(1, 3).length.should.within(0, 16);
   });
+  it('should add like count', function() {
+    const newPalette = {
+      items: [
+        {type: 'COLOR', content: {hex: 'AAAAAA'}}
+        ,{type: 'COLOR', content: {hex: 'BBBBBB'}}
+        ,{type: 'COLOR', content: {hex: 'CCCCCC'}}
+        ,{type: 'COLOR', content: {hex: 'DDDDDD'}}
+      ]
+    };
+    const id = PaletteApi.create(newPalette);
+    const count = PaletteApi.like(id);
+    count.should.equal(1);
+  });
+  it('should minus like count', function() {
+    const newPalette = {
+      items: [
+        {type: 'COLOR', content: {hex: 'AAAAAA'}}
+        ,{type: 'COLOR', content: {hex: 'BBBBBB'}}
+        ,{type: 'COLOR', content: {hex: 'CCCCCC'}}
+        ,{type: 'COLOR', content: {hex: 'DDDDDD'}}
+      ]
+    };
+    const id = PaletteApi.create(newPalette);
+    PaletteApi.like(id);
+    PaletteApi.like(id);
+    const count = PaletteApi.unlike(id);
+    count.should.equal(1);
+  });
 });

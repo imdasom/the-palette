@@ -2,9 +2,17 @@ const PalettesApi = require('./PaletteApi');
 
 function handle(url, method, queryParameter, requestData) {
   if(url.includes('/api/palettes')) {
-    const urlMatch = url.match(/^(?:\/api\/palettes\b)(?:\/)([\w]+)$/);
-    if(urlMatch != null) {
-      const id = Number(urlMatch[1]);
+    const getPaletteUrlExp = url.match(/^(?:\/api\/palettes\b)(?:\/)([\w]+)$/);
+    const likePaletteUrlExp = url.match(/^(?:\/api\/palettes\b)(?:\/)([\w]+)(\/like)$/);
+    if(likePaletteUrlExp != null) {
+      const id = Number(likePaletteUrlExp[1]);
+      return {
+        returnType: 'plain/text'
+        ,statusCode: 200
+        ,content: PalettesApi.like(id)
+      };
+    } else if(getPaletteUrlExp != null) {
+      const id = Number(getPaletteUrlExp[1]);
       return {
         returnType: 'json'
         ,statusCode: 200

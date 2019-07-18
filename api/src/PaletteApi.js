@@ -56,8 +56,24 @@ function validatePalette(palette) {
   });
 }
 
+function like(id) {
+  const palette = getPalette(id);
+  palette.like++;
+  return palette.like;
+}
+
+function unlike(id) {
+  const palette = getPalette(id);
+  if(palette.like > 0) {
+    palette.like--;
+  }
+  return palette.like;
+}
+
 module.exports = {
   create: create
   ,getPalette: getPalette
   ,getPalettesWithPagination: getPalettesWithPagination
+  ,like: like
+  ,unlike: unlike
 };

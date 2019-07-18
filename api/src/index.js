@@ -11,7 +11,7 @@ const hostname = '127.0.0.1';
 const port = 3001;
 const headers = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, PUT',
   'Access-Control-Max-Age': 2592000, // 30 days,
   'Access-Control-Allow-Headers': 'Origin,Accept,X-Requested-With,Content-Type,Return-Type' +
     ',Access-Control-Request-Method,Access-Control-Request-Headers,Authorization'
