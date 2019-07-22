@@ -1,7 +1,9 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const host = 'localhost';
-const port = '3001';
+const host = process.env.API_HOST;
+const port = process.env.API_PORT;
 const apiHost = host + ':' + port;
 
 export default {

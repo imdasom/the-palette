@@ -2,13 +2,14 @@
  * 참고 : https://www.dev2qa.com/node-js-http-server-get-post-example/
  */
 
+require('dotenv').config();
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
 const RequestHandler = require('./RequestHandler');
 
-const hostname = '127.0.0.1';
-const port = 3001;
+const hostname = process.env.HOST_NAME;
+const port = process.env.PORT;
 const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, PUT',
