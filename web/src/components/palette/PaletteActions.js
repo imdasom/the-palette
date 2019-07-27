@@ -1,14 +1,10 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const host = process.env.API_HOST;
-const port = process.env.API_PORT;
-const apiHost = host + ':' + port;
+const apiHost = process.env.REACT_APP_API_HOST;
 
 export default {
   create(palette, success, fail) {
-    const url = 'http://' + apiHost + '/api/palettes';
+    const url = apiHost + '/api/palettes';
     const data = palette;
     const config = {
       headers: {
@@ -21,7 +17,7 @@ export default {
       .catch(error => { fail(error); });
   }
   ,getPalette(id, success, fail) {
-    const url = 'http://' + apiHost + `/api/palettes/${id}`;
+    const url = apiHost + `/api/palettes/${id}`;
     const config = {
       headers: {
         'Return-Type': 'application/json'
@@ -33,7 +29,7 @@ export default {
       .catch(error => { fail(error); });
   }
   ,like(id, success, fail) {
-    const url = 'http://' + apiHost + `/api/palettes/${id}/like`;
+    const url = apiHost + `/api/palettes/${id}/like`;
     const config = {
       headers: {
         'Return-Type': 'plain/text'
