@@ -17,6 +17,7 @@ class PaletteInfo extends Component {
       ]
       ,like: 0
     }
+    ,palettes: []
   };
   constructor(props) {
     super(props);
@@ -27,29 +28,27 @@ class PaletteInfo extends Component {
         alert(error);
       }
     );
+    PaletteActions.getPalettes(
+      {page:1, pageSize:16}
+      ,this.setPalettes
+      ,function fail(error) {
+        alert(error);
+      }
+    )
   }
   setPalette = (response) => {
     const palette = response.data;
     this.setState({ palette: palette });
+  };
+  setPalettes = (response) => {
+    const palettes = response.data;
+    this.setState({ palettes: palettes });
   };
   setLikeState = (like) => {
     const { palette } = this.state;
     this.setState({
       palette: { ... palette, like: like}
     });
-  };
-  getColorItems = () => {
-    const { palette, classNames } = this.state;
-    return palette.items.map(
-      (item, index) => {return (
-        <ColorItem
-          key={index}
-          id={index}
-          className={classNames[index]}
-          colorItem={item}
-        />
-      )}
-    );
   };
   handleLikeClick = () => {
     const { palette } = this.state;
@@ -73,9 +72,19 @@ class PaletteInfo extends Component {
   itemsToString = (items) => {
     return 'thepalette-' + items.map(item => item.content.hex).join('');
   };
-
-  render() {
-    const { palette } = this.state;
+  getColorItems = (palette, classNames) => {
+    return palette.items.map(
+      (item, index) => {return (
+        <ColorItem
+          key={index}
+          id={index}
+          className={classNames[index]}
+          colorItem={item}
+        />
+      )}
+    );
+  };
+  getPalette = (palette, classNames, focused) => {
     const key = this.itemsToString(palette.items);
     const value = palette.id;
     const liked = LocalStorageUtil.haveItLocalStorage(key, value);
@@ -84,18 +93,32 @@ class PaletteInfo extends Component {
       like: palette.like
       ,handleClick: this.handleLikeClick
     };
-    const items = this.getColorItems();
+    const items = this.getColorItems(palette, classNames);
+    return (
+      <Palette
+        items={items}
+        likeButtonProps={likeButtonProps}
+        date={date}
+        focused={focused}
+        liked={liked}
+        itemContainerClassNames={'palette'}
+      />
+    );
+  };
+
+  render() {
+    const { palette, palettes, classNames } = this.state;
+    const focusedPalette = this.getPalette(palette, classNames, true);
+    const paletteList = palettes.map(
+      (palette) => {
+        return this.getPalette(palette, classNames, false);
+      }
+    );
     return (
       <div id="container" className="wrap">
         <div id="feed">
-          <Palette
-            items={items}
-            likeButtonProps={likeButtonProps}
-            date={date}
-            focused={true}
-            liked={liked}
-            itemContainerClassNames={'palette'}
-          />
+          {focusedPalette}
+          {paletteList}
         </div>
       </div>
     );

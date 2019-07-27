@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'querystring';
 
 const apiHost = process.env.REACT_APP_API_HOST;
 
@@ -15,6 +16,19 @@ export default {
       .post(url, data, config)
       .then(response => { success(response); })
       .catch(error => { fail(error); });
+  }
+  ,getPalettes(pagination, success, fail) {
+    const paginationQuery = qs.stringify(pagination);
+    const url = apiHost + `/api/palettes?${paginationQuery}`;
+    const config = {
+      headers: {
+        'Return-Type': 'application/json'
+      }
+    };
+    axios
+      .get(url, config)
+      .then(response => { success(response); })
+      .catch(error => {fail(error); });
   }
   ,getPalette(id, success, fail) {
     const url = apiHost + `/api/palettes/${id}`;
