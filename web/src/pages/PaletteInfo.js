@@ -50,18 +50,26 @@ class PaletteInfo extends Component {
       palette: { ... palette, like: like}
     });
   };
-  handleLikeClick = () => {
-    const { palette } = this.state;
+  setLikeStateAtList = (id, like) => {
+    const { palettes } = this.state;
+    this.setState({
+      palettes: palettes.map((item, index) => {
+        return item.id === id ? { ...item, like: like } : item;
+      })
+    });
+  };
+  handleLikeClick = (palette) => {
     const key = this.itemsToString(palette.items);
     const value = palette.id;
     const haveIt = LocalStorageUtil.haveItLocalStorage(key, value);
     const likeOrUnlikeAction = haveIt ? PaletteActions.unlike : PaletteActions.like;
     likeOrUnlikeAction(
-      palette.id
+      value
       , (response) => {
         const likeCount = response.data;
         LocalStorageUtil.toggleLikeLocalStorage(haveIt, key, value);
         this.setLikeState(likeCount);
+        this.setLikeStateAtList(value, likeCount);
       }
       , (error) => {
         console.log(error);
@@ -91,7 +99,7 @@ class PaletteInfo extends Component {
     const date = new Date(palette.created);
     const likeButtonProps = {
       like: palette.like
-      ,handleClick: this.handleLikeClick
+      ,handleClick: () => { this.handleLikeClick(palette); }
     };
     const items = this.getColorItems(palette, classNames);
     return (
