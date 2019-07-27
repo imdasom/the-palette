@@ -40,4 +40,16 @@ export default {
       .then(response => { success(response); })
       .catch(error => { fail(error); })
   }
+  ,unlike(id, success, fail) {
+    const url = apiHost + `/api/palettes/${id}/unlike`;
+    const config = {
+      headers: {
+        'Return-Type': 'plain/text'
+      }
+    };
+    axios
+      .put(url, null, config)
+      .then(response => { success(response); })
+      .catch(error => { fail(error); })
+  }
 };

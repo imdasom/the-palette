@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ColorItem, Palette, PaletteActions } from 'components/palette';
+import { LocalStorageUtil } from 'helper/LocalStorageUtil';
 import './Palettes.css';
 import './PaletteInfo.css';
 
@@ -7,7 +8,8 @@ class PaletteInfo extends Component {
   state = {
     classNames: ['c4', 'c3', 'c2', 'c1']
     ,palette: {
-      items: [
+      id: -1
+      ,items: [
         { type: 'COLOR', content: {hex: 'AAAAAA'} }
         ,{ type: 'COLOR', content: {hex: 'BBBBBB'} }
         ,{ type: 'COLOR', content: {hex: 'CCCCCC'} }
@@ -27,12 +29,13 @@ class PaletteInfo extends Component {
     );
   }
   setPalette = (response) => {
-    this.setState({palette: response.data});
+    const palette = response.data;
+    this.setState({ palette: palette });
   };
-  setPaletteLike = (response) => {
+  setLikeState = (like) => {
     const { palette } = this.state;
     this.setState({
-      palette: { ... palette, like: response.data}
+      palette: { ... palette, like: like}
     });
   };
   getColorItems = () => {
@@ -50,17 +53,32 @@ class PaletteInfo extends Component {
   };
   handleLikeClick = () => {
     const { palette } = this.state;
-    PaletteActions.like(
+    const key = this.itemsToString(palette.items);
+    const value = palette.id;
+    const haveIt = LocalStorageUtil.haveItLocalStorage(key, value);
+    const likeOrUnlikeAction = haveIt ? PaletteActions.unlike : PaletteActions.like;
+    likeOrUnlikeAction(
       palette.id
-      ,this.setPaletteLike
-      ,function fail(error) {
+      , (response) => {
+        const likeCount = response.data;
+        LocalStorageUtil.toggleLikeLocalStorage(haveIt, key, value);
+        this.setLikeState(likeCount);
+      }
+      , (error) => {
         console.log(error);
         alert(error);
       }
     );
   };
+  itemsToString = (items) => {
+    return 'thepalette-' + items.map(item => item.content.hex).join('');
+  };
+
   render() {
     const { palette } = this.state;
+    const key = this.itemsToString(palette.items);
+    const value = palette.id;
+    const liked = LocalStorageUtil.haveItLocalStorage(key, value);
     const date = new Date(palette.created);
     const likeButtonProps = {
       like: palette.like
@@ -75,6 +93,7 @@ class PaletteInfo extends Component {
             likeButtonProps={likeButtonProps}
             date={date}
             focused={true}
+            liked={liked}
             itemContainerClassNames={'palette'}
           />
         </div>
