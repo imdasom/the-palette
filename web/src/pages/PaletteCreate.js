@@ -3,7 +3,7 @@ import { SketchPicker } from 'react-color'; // https://casesandberg.github.io/re
 import { ColorItem, ItemContainer, PaletteActions } from 'components/palette';
 import { history } from 'helper/history';
 import 'pages/Palettes.css';
-import 'pages/PaletteCreate.css';
+import 'pages/PaletteCreate.scss';
 
 class PaletteCreate extends Component {
   state = {
@@ -67,28 +67,30 @@ class PaletteCreate extends Component {
     const items = this.getColorItems();
     const { activeColor } = this.state;
     return (
-      <center>
-        <h1>Create Palette</h1>
-        <form>
-          <div className="item">
-            <ItemContainer items={items} classNames={'canvas'}/>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="button suggest-button"
-              onClick={this.submitPalette}>
-              Done
-            </button>
-          </div>
-        </form>
-        <SketchPicker
-          className="sp-container"
-          disableAlpha={true}
-          color={activeColor}
-          onChange={this.handleColorPickerChange}
-        />
-      </center>
+      <div className="wrapper-palette-create">
+        <center>
+          <h1>Create Palette</h1>
+          <form>
+            <div className="item">
+              <ItemContainer items={items} classNames={'canvas'}/>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="button suggest-button"
+                onClick={this.submitPalette}>
+                Done
+              </button>
+            </div>
+          </form>
+          <SketchPicker
+            className="sp-container"
+            disableAlpha={true}
+            color={activeColor}
+            onChange={this.handleColorPickerChange}
+          />
+        </center>
+      </div>
     );
   }
 }

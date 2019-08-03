@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { ColorItem, Palette, PaletteActions } from 'components/palette';
 import { LocalStorageUtil } from 'helper/LocalStorageUtil';
-import './Palettes.css';
-import './PaletteInfo.css';
+import 'pages/Palettes.css';
+import 'pages/PaletteInfo.scss';
 
 class PaletteInfo extends Component {
   state = {
@@ -123,7 +123,7 @@ class PaletteInfo extends Component {
       }
     );
     return (
-      <div id="container" className="wrap">
+      <div id="container" className="wrap wrapper-palette-info">
         <div id="feed">
           {focusedPalette}
           {paletteList}
