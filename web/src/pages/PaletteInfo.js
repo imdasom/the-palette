@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from "./layout/Header";
 import { ColorItem, Palette, PaletteActions } from 'components/palette';
 import { LocalStorageUtil } from 'helper/LocalStorageUtil';
 import 'pages/Palettes.css';
@@ -123,10 +124,13 @@ class PaletteInfo extends Component {
       }
     );
     return (
-      <div id="container" className="wrap wrapper-palette-info">
-        <div id="feed">
-          {focusedPalette}
-          {paletteList}
+      <div>
+        <Header palette={palette} />
+        <div id="container" className="wrap wrapper-palette-info">
+          <div id="feed">
+            {focusedPalette}
+            {paletteList}
+          </div>
         </div>
       </div>
     );
