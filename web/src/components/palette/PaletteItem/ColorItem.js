@@ -11,6 +11,7 @@ class ColorItem extends Component {
     return (
       <div
         key={key}
+        data-testid={`ColorItem`+id}
         id={id}
         className={`place paletteItem `+className}
         style={{backgroundColor: '#'+colorHex}}

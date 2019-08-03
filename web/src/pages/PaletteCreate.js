@@ -12,10 +12,10 @@ class PaletteCreate extends Component {
     ,classNames: ['c4', 'c3', 'c2', 'c1']
     ,palette: {
       items: [
-        { type: 'COLOR', content: {hex: 'AAAAAA'} }
-        ,{ type: 'COLOR', content: {hex: 'BBBBBB'} }
+        { type: 'COLOR', content: {hex: 'DDDDDD'} }
         ,{ type: 'COLOR', content: {hex: 'CCCCCC'} }
-        ,{ type: 'COLOR', content: {hex: 'DDDDDD'} }
+        ,{ type: 'COLOR', content: {hex: 'BBBBBB'} }
+        ,{ type: 'COLOR', content: {hex: 'AAAAAA'} }
       ]
     }
   };
