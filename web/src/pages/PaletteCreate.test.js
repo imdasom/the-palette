@@ -1,17 +1,20 @@
-import React from 'react';
-import { render} from '@testing-library/react';
-import { mount } from 'enzyme';
-import { waitForState } from 'enzyme-async-helpers';
+import React, { Suspense } from 'react';
+import { render, waitForElement } from '@testing-library/react';
 import { PaletteCreate } from './index';
 
+const getComponentWithSuspense = function() {
+  return (
+    <Suspense fallback={<div>Loading PaletteCreate...</div>}>
+      <PaletteCreate />
+    </Suspense>
+  );
+};
+
 describe('<PaletteCreate>', () => {
-  it('matches snapshot', async () => {
-    const wrapper = mount(<PaletteCreate />);
-    await waitForState(wrapper, state => {
-      return state.Splitted != null
-    }
-    );
-    expect(wrapper.instance().state.Splitted).toMatchSnapshot();
+  it('render component', async () => {
+    const { getByText } = render(getComponentWithSuspense());
+    const lazyElement = await waitForElement(() => getByText('Create Palette'));
+    expect(lazyElement).toBeInTheDocument();
   });
   it('should have 4 paletteItem', () => {
     // const utils = render(<PaletteCreate />);
