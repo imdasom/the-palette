@@ -1,12 +1,15 @@
 import React, { Suspense } from 'react';
 import { render, wait, waitForElement, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { PaletteCreate } from 'pages';
 
 const getComponentWithSuspense = function() {
   return (
-    <Suspense fallback={<div>Loading PaletteCreate...</div>}>
-      <PaletteCreate />
-    </Suspense>
+    <MemoryRouter>
+      <Suspense fallback={<div>Loading PaletteCreate...</div>}>
+        <PaletteCreate />
+      </Suspense>
+    </MemoryRouter>
   );
 };
 
