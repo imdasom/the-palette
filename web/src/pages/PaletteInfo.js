@@ -48,7 +48,7 @@ class PaletteInfo extends Component {
   setLikeState = (like) => {
     const { palette } = this.state;
     this.setState({
-      palette: { ... palette, like: like}
+      palette: { ...palette, like: like }
     });
   };
   setLikeStateAtList = (id, like) => {

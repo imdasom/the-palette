@@ -21,12 +21,13 @@ class Header extends Component {
             </li>
             {
               palette != null ?
-                (<li>
-                  <NavLink to={`/palette/${palette.id}`}>Palette {palette.id}</NavLink>
-                </li>)
+                (
+                  <li>
+                    <NavLink to={`/palette/${palette.id}`}>Palette {palette.id}</NavLink>
+                  </li>
+                )
                 : ''
             }
-
           </ol>
         </div>
       </div>
