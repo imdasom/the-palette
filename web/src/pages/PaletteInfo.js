@@ -131,6 +131,12 @@ class PaletteInfo extends Component {
             {focusedPalette}
             {paletteList}
           </div>
+          <div id="side">
+            <div id="credit" className="section">
+              Made with by <a target="_blank" rel="noreferrer" href="https://github.com/imdasom/the-palette">imdasom</a>
+              <br/>Version <img alt="Color Hunt Palettes Heart Icon" src="/img/color-hunt-palettes-icon-heart-blue.png" /> 0.1.1
+            </div>
+          </div>
         </div>
       </div>
     );
