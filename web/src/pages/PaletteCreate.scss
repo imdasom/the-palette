@@ -1,62 +1,64 @@
-* {
+/* PaletteCreate.css */
+.wrapper-palette-create {
+  * {
     transition: none
-}
+  }
 
-h1 {
+  h1 {
     margin-top: 40px;
     margin-bottom: 40px;
-}
+  }
 
-.item {
+  .item {
     width: 400px;
     height: 400px;
     cursor: pointer;
     margin: 0;
     padding: 0;
-}
+  }
 
-.c1 {
+  .c1 {
     background-color: #ddd
-}
+  }
 
-.c2 {
+  .c2 {
     background-color: #ccc
-}
+  }
 
-.c3 {
+  .c3 {
     background-color: #bbb
-}
+  }
 
-.c4 {
+  .c4 {
     background-color: #aaa
-}
+  }
 
-.hide {
+  .hide {
     display: none
-}
+  }
 
-img {
+  img {
     width: 80px
-}
+  }
 
-.suggest-button {
+  .suggest-button {
     margin-top: 20px;
-}
+  }
 
-.sketch-picker {
+  .sketch-picker {
     display: inline-block;
     float: right
-}
+  }
 
-@media screen and (max-width: 1080px) {
+  @media screen and (max-width: 1080px) {
     .center {
-        margin: 0;
-        padding: 10px;
-        width: 240px;
+      margin: 0;
+      padding: 10px;
+      width: 240px;
     }
-}
+  }
 
-.sp-container {
+  .sp-container {
     position: absolute!important;
     border-radius: 4px;
     background-color: white;
@@ -65,4 +67,5 @@ img {
     right: 100px!important;
     top: 100px!important;
     left: auto!important;
+  }
 }

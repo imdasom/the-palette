@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Header from "./layout/Header";
 import { ColorItem, Palette, PaletteActions } from 'components/palette';
 import { LocalStorageUtil } from 'helper/LocalStorageUtil';
-import './Palettes.css';
-import './PaletteInfo.css';
+import 'pages/Palettes.css';
+import 'pages/PaletteInfo.scss';
 
 class PaletteInfo extends Component {
   state = {
@@ -47,7 +48,7 @@ class PaletteInfo extends Component {
   setLikeState = (like) => {
     const { palette } = this.state;
     this.setState({
-      palette: { ... palette, like: like}
+      palette: { ...palette, like: like }
     });
   };
   setLikeStateAtList = (id, like) => {
@@ -123,10 +124,19 @@ class PaletteInfo extends Component {
       }
     );
     return (
-      <div id="container" className="wrap">
-        <div id="feed">
-          {focusedPalette}
-          {paletteList}
+      <div>
+        <Header palette={palette} />
+        <div id="container" className="wrap wrapper-palette-info">
+          <div id="feed">
+            {focusedPalette}
+            {paletteList}
+          </div>
+          <div id="side">
+            <div id="credit" className="section">
+              Made with by <a target="_blank" rel="noreferrer" href="https://github.com/imdasom/the-palette">imdasom</a>
+              <br/>Version <img alt="Color Hunt Palettes Heart Icon" src="/img/color-hunt-palettes-icon-heart-blue.png" /> 0.1.1
+            </div>
+          </div>
         </div>
       </div>
     );

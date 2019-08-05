@@ -3,7 +3,8 @@ import { SketchPicker } from 'react-color'; // https://casesandberg.github.io/re
 import { ColorItem, ItemContainer, PaletteActions } from 'components/palette';
 import { history } from 'helper/history';
 import 'pages/Palettes.css';
-import 'pages/PaletteCreate.css';
+import 'pages/PaletteCreate.scss';
+import Header from "./layout/Header";
 
 class PaletteCreate extends Component {
   state = {
@@ -12,10 +13,10 @@ class PaletteCreate extends Component {
     ,classNames: ['c4', 'c3', 'c2', 'c1']
     ,palette: {
       items: [
-        { type: 'COLOR', content: {hex: 'AAAAAA'} }
-        ,{ type: 'COLOR', content: {hex: 'BBBBBB'} }
+        { type: 'COLOR', content: {hex: 'DDDDDD'} }
         ,{ type: 'COLOR', content: {hex: 'CCCCCC'} }
-        ,{ type: 'COLOR', content: {hex: 'DDDDDD'} }
+        ,{ type: 'COLOR', content: {hex: 'BBBBBB'} }
+        ,{ type: 'COLOR', content: {hex: 'AAAAAA'} }
       ]
     }
   };
@@ -67,28 +68,33 @@ class PaletteCreate extends Component {
     const items = this.getColorItems();
     const { activeColor } = this.state;
     return (
-      <center>
-        <h1>Create Palette</h1>
-        <form>
-          <div className="item">
-            <ItemContainer items={items} classNames={'canvas'}/>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="button suggest-button"
-              onClick={this.submitPalette}>
-              Done
-            </button>
-          </div>
-        </form>
-        <SketchPicker
-          className="sp-container"
-          disableAlpha={true}
-          color={activeColor}
-          onChange={this.handleColorPickerChange}
-        />
-      </center>
+      <div>
+        <Header />
+        <div className="wrapper-palette-create">
+          <center>
+            <h1>Create Palette</h1>
+            <form>
+              <div className="item">
+                <ItemContainer items={items} classNames={'canvas'}/>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="button suggest-button"
+                  onClick={this.submitPalette}>
+                  Done
+                </button>
+              </div>
+            </form>
+            <SketchPicker
+              className="sp-container"
+              disableAlpha={true}
+              color={activeColor}
+              onChange={this.handleColorPickerChange}
+            />
+          </center>
+        </div>
+      </div>
     );
   }
 }
