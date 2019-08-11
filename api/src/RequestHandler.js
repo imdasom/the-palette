@@ -17,19 +17,25 @@ function handle(url, method, queryParameter, requestData) {
     const likePaletteUrlExp = url.match(urlMatcher.likePalette);
     const unlikePaletteUrlExp = url.match(urlMatcher.unlikePalette);
     if(likePaletteUrlExp != null) {
-      const id = Number(likePaletteUrlExp[1]);
-      return {
-        returnType: 'plain/text'
-        ,statusCode: 200
-        ,content: PalettesApi.like(id)
-      };
+      if(method === 'PUT') {
+        const id = Number(likePaletteUrlExp[1]);
+        return {
+          returnType: 'plain/text'
+          ,statusCode: 200
+          ,content: PalettesApi.like(id)
+        };
+      } else {
+
+      }
     } else if(unlikePaletteUrlExp != null) {
-      const id = Number(unlikePaletteUrlExp[1]);
-      return {
-        returnType: 'plain/text'
-        ,statusCode: 200
-        ,content: PalettesApi.unlike(id)
-      };
+      if(method === 'PUT') {
+        const id = Number(unlikePaletteUrlExp[1]);
+        return {
+          returnType: 'plain/text'
+          ,statusCode: 200
+          ,content: PalettesApi.unlike(id)
+        };
+      }
     } else if(getPaletteUrlExp != null) {
       const id = Number(getPaletteUrlExp[1]);
       return {

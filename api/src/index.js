@@ -52,7 +52,7 @@ const server = http.createServer((req, res) => {
       requestData = JSON.parse(requestData);
       handleRequest();
     });
-  } else {
+  } else if(method === 'GET' || method === 'PUT') {
     handleRequest();
   }
 });
