@@ -111,6 +111,7 @@ class PaletteInfo extends Component {
         focused={focused}
         liked={liked}
         itemContainerClassNames={'palette'}
+        data-testid={'Palette'}
       />
     );
   };
