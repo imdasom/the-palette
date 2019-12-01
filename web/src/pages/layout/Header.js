@@ -28,6 +28,9 @@ class Header extends Component {
                 )
                 : ''
             }
+            <li>
+              <NavLink to="/tdd/dynamic-child">DynamicChildTest</NavLink>
+            </li>
           </ol>
         </div>
       </div>

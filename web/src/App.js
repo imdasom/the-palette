@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { PaletteCreate, PaletteInfo } from 'pages';
+import { PaletteCreate, PaletteInfo, DynamicChildContainer } from 'pages';
 import { history } from 'helper/history'
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
             <Switch>
               <Route exact path="/palette/new" component={PaletteCreate} />
               <Route exact path="/palette/:id" component={PaletteInfo} />
+              <Route exact path="/tdd/dynamic-child" component={DynamicChildContainer} />
             </Switch>
           </div>
         </Suspense>
