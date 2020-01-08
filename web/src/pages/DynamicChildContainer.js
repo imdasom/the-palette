@@ -3,25 +3,25 @@ import { DynamicChildComponent } from "components/dynamicchild";
 
 class DynamicChildContainer extends Component {
   state = {
-    optionList: []
-    , optionPolicy: {
-      maxOptionLength: 5
+    itemList: []
+    , itemPolicy: {
+      maxItemLength: 5
     }
   };
-  updateOptionList = (event, newOptionList) => {
-    this.setState({optionList: newOptionList});
-  }
+  updateItemList = (event, newItemList) => {
+    this.setState({itemList: newItemList});
+  };
   render() {
-    const { optionList, optionPolicy } = this.state;
+    const { itemList, itemPolicy } = this.state;
     return (
       <Fragment>
-        <h2>Menu Page</h2>
+        <h2>Dynamic Child UI Test Page</h2>
         <DynamicChildComponent
-          optionList={optionList}
+          itemList={itemList}
           eventHandlers={{
-            updateOptionList: this.updateOptionList
+            updateItemList: this.updateItemList
           }}
-          optionPolicy={optionPolicy}
+          itemPolicy={itemPolicy}
         />
       </Fragment>
     );
