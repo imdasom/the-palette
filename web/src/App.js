@@ -5,7 +5,7 @@ import { history } from 'helper/history'
 function App() {
   return (
     <div>
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <Suspense fallback={<div>Loading...</div>}>
           <div>
             <Route exact path="/" component={PaletteCreate} />
@@ -16,7 +16,7 @@ function App() {
             </Switch>
           </div>
         </Suspense>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
